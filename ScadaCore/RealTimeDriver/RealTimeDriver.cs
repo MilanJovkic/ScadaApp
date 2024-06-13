@@ -1,31 +1,77 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace RealTimeDriver
 {
     public static class RealTimeDriver
     {
-        // Simulated data store
-        private static readonly Dictionary<string, double> _dataStore = new Dictionary<string, double>();
+        private static readonly string SolutionDirectory1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..");
+        private static readonly string FilePath1 = Path.Combine(SolutionDirectory1, "RealTimeDriver", "dataStore.json");
+        private static readonly string SolutionDirectory2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..");
+        private static readonly string FilePath2 = Path.Combine(SolutionDirectory2, "RealTimeDriver", "dataStore.json");
+
+        private static readonly object FileLock = new object();
 
         public static void WriteValue(string address, double value)
         {
-            // Simulate writing a value to a given address
-            _dataStore[address] = value;
+            lock (FileLock)
+            {
+                var dataStore = LoadDataStore1();
+                dataStore[address] = value;
+                SaveDataStore1(dataStore);
+            }
         }
 
         public static double ReadValue(string address)
         {
-            // Simulate reading a value from a given address
-            if (_dataStore.TryGetValue(address, out double value))   
+            lock (FileLock)
             {
-                return value;
+                var dataStore = LoadDataStore2();
+                if (dataStore.TryGetValue(address, out double value))
+                {
+                    return value;
+                }
+                else
+                {
+                    return double.NaN; // Placeholder for non-existent address
+                }
             }
-            else
+        }
+
+        private static Dictionary<string, double> LoadDataStore1()
+        {
+            if (!File.Exists(FilePath1))
             {
-                // Consider how to handle the case where the address does not exist.
-                // For now, returning 0 or throwing an exception could be options.
-                return double.NaN; // Placeholder for non-existent address
+                return new Dictionary<string, double>();
             }
+
+            var json = File.ReadAllText(FilePath1);
+            return JsonConvert.DeserializeObject<Dictionary<string, double>>(json) ?? new Dictionary<string, double>();
+        }
+
+        private static void SaveDataStore1(Dictionary<string, double> dataStore)
+        {
+            var json = JsonConvert.SerializeObject(dataStore);
+            File.WriteAllText(FilePath1, json);
+        }
+
+        private static Dictionary<string, double> LoadDataStore2()
+        {
+            if (!File.Exists(FilePath2))
+            {
+                return new Dictionary<string, double>();
+            }
+
+            var json = File.ReadAllText(FilePath2);
+            return JsonConvert.DeserializeObject<Dictionary<string, double>>(json) ?? new Dictionary<string, double>();
+        }
+
+        private static void SaveDataStore2(Dictionary<string, double> dataStore)
+        {
+            var json = JsonConvert.SerializeObject(dataStore);
+            File.WriteAllText(FilePath2, json);
         }
     }
 }
