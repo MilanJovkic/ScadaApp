@@ -22,11 +22,13 @@ namespace HostScadaCore.ServiceReference2 {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private string Descriptionk__BackingFieldField;
+        
+        private string IOAddressk__BackingFieldField;
+        
         private string Namek__BackingFieldField;
         
         private bool ScanOnk__BackingFieldField;
-        
-        private double Valuek__BackingFieldField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -35,6 +37,32 @@ namespace HostScadaCore.ServiceReference2 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Description>k__BackingField", IsRequired=true)]
+        public string Descriptionk__BackingField {
+            get {
+                return this.Descriptionk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Descriptionk__BackingFieldField, value) != true)) {
+                    this.Descriptionk__BackingFieldField = value;
+                    this.RaisePropertyChanged("Descriptionk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<IOAddress>k__BackingField", IsRequired=true)]
+        public string IOAddressk__BackingField {
+            get {
+                return this.IOAddressk__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IOAddressk__BackingFieldField, value) != true)) {
+                    this.IOAddressk__BackingFieldField = value;
+                    this.RaisePropertyChanged("IOAddressk__BackingField");
+                }
             }
         }
         
@@ -60,19 +88,6 @@ namespace HostScadaCore.ServiceReference2 {
                 if ((this.ScanOnk__BackingFieldField.Equals(value) != true)) {
                     this.ScanOnk__BackingFieldField = value;
                     this.RaisePropertyChanged("ScanOnk__BackingField");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Value>k__BackingField", IsRequired=true)]
-        public double Valuek__BackingField {
-            get {
-                return this.Valuek__BackingFieldField;
-            }
-            set {
-                if ((this.Valuek__BackingFieldField.Equals(value) != true)) {
-                    this.Valuek__BackingFieldField = value;
-                    this.RaisePropertyChanged("Valuek__BackingField");
                 }
             }
         }
@@ -104,10 +119,10 @@ namespace HostScadaCore.ServiceReference2 {
         System.Threading.Tasks.Task RemoveTagAsync(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/SetTagValue", ReplyAction="http://tempuri.org/ITagProcessing/SetTagValueResponse")]
-        void SetTagValue(string tagName, double value);
+        bool SetTagValue(string tagName, double value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/SetTagValue", ReplyAction="http://tempuri.org/ITagProcessing/SetTagValueResponse")]
-        System.Threading.Tasks.Task SetTagValueAsync(string tagName, double value);
+        System.Threading.Tasks.Task<bool> SetTagValueAsync(string tagName, double value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/GetTagValue", ReplyAction="http://tempuri.org/ITagProcessing/GetTagValueResponse")]
         double GetTagValue(string tagName);
@@ -165,11 +180,11 @@ namespace HostScadaCore.ServiceReference2 {
             return base.Channel.RemoveTagAsync(tagName);
         }
         
-        public void SetTagValue(string tagName, double value) {
-            base.Channel.SetTagValue(tagName, value);
+        public bool SetTagValue(string tagName, double value) {
+            return base.Channel.SetTagValue(tagName, value);
         }
         
-        public System.Threading.Tasks.Task SetTagValueAsync(string tagName, double value) {
+        public System.Threading.Tasks.Task<bool> SetTagValueAsync(string tagName, double value) {
             return base.Channel.SetTagValueAsync(tagName, value);
         }
         

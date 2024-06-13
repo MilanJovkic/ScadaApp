@@ -65,6 +65,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AITag.cs" />
+    <Compile Include="AOTag.cs" />
+    <Compile Include="DITag.cs" />
+    <Compile Include="DOTag.cs" />
     <Compile Include="ITagProcessing.cs" />
     <Compile Include="IUserProcessing.cs" />
     <Compile Include="SCADACoreService.svc.cs">

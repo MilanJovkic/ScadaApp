@@ -26,18 +26,58 @@ namespace ScadaCore
                 tags.Remove(tagName);
             }
         }
-        public void SetTagValue(string tagName, double value)
+        public bool SetTagValue(string tagName, double value)
         {
             if (isLoggedIn)
             {
                 if (tags.ContainsKey(tagName))
-                    tags[tagName].Value = value;
+                {
+                    if (tags[tagName] is DOTag)
+                    {
+                        DOTag dOTag = tags[tagName] as DOTag;
+                        dOTag.InitialValue = value;
+                        tags[tagName] = dOTag;
+                        return true;
+                    }
+                    else if (tags[tagName] is AOTag)
+                    {
+                        AOTag aOTag = tags[tagName] as AOTag;
+                        if (value >= aOTag.LowLimit && value <= aOTag.HighLimit)
+                        {
+                            aOTag.InitialValue = value;
+                            tags[tagName] = aOTag;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
+            return false;
         }
         public double GetTagValue(string tagName) {
             if (isLoggedIn)
             {
-                return tags.ContainsKey(tagName) ? tags[tagName].Value : double.NaN;
+                if (tags.ContainsKey(tagName))
+                {
+                    if (tags[tagName] is DOTag)
+                    {
+                        DOTag dOTag = tags[tagName] as DOTag;
+                        return dOTag.InitialValue;
+                    }
+
+                    if (tags[tagName] is AOTag)
+                    {
+                        AOTag aOTag = tags[tagName] as AOTag;
+                        return aOTag.InitialValue;
+                    }
+                }
             }
             return double.NaN;
         }
@@ -50,14 +90,17 @@ namespace ScadaCore
             }
         }
 
-        public bool RegisterUser(String username, String password) {
-            if (users[username] == null) {
+        public bool RegisterUser(string username, string password) 
+        {
+            if (!users.ContainsKey(username))
+            {
                 users[username] = new User(username, password);
                 return true;
             }
             return false;
         } 
-        public bool Login(string username, string password) {
+        public bool Login(string username, string password) 
+        {
             bool isCorrect = users.ContainsKey(username) && users[username].Password == password;
             if (isCorrect) { 
                 isLoggedIn = true;

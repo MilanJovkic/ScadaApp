@@ -17,7 +17,7 @@ namespace ScadaCore
         void RemoveTag(string tagName);
 
         [OperationContract]
-        void SetTagValue(string tagName, double value);
+        bool SetTagValue(string tagName, double value);
 
         [OperationContract]
         double GetTagValue(string tagName);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using HostScadaCore.ServiceReference1;
+using HostScadaCore.ServiceReference2;
 
 namespace HostScadaCore
 {
@@ -163,8 +164,15 @@ namespace HostScadaCore
             string tagName = Console.ReadLine();
             Console.Write("Enter tag value: ");
             double tagValue = double.Parse(Console.ReadLine());
-            tagProcessingClient.SetTagValue(tagName, tagValue);
-            Console.WriteLine("Tag value set.");
+            bool succestag = tagProcessingClient.SetTagValue(tagName, tagValue);
+            if (succestag)
+            {
+                Console.WriteLine("Tag value set.");
+            }
+            else
+            {
+                Console.WriteLine("Failed to set tag value.");
+            }
         }
 
         static void GetTagValue()
