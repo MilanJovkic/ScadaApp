@@ -13,6 +13,7 @@ namespace ScadaCore
     {
         private Dictionary<string, Tag> tags = new Dictionary<string, Tag>();
         private Dictionary<string, User> users = new Dictionary<string, User>();
+        private bool isLoggedIn = false;
 
         public void AddTag(Tag tag) => tags[tag.Name] = tag;
         public void RemoveTag(string tagName) => tags.Remove(tagName);
@@ -29,7 +30,13 @@ namespace ScadaCore
         }
 
         public void RegisterUser(String username, String password) => users[username] = new User(username, password);
-        public bool Login(string username, string password) => users.ContainsKey(username) && users[username].Password == password;
+        public bool Login(string username, string password) {
+            bool isCorrect = users.ContainsKey(username) && users[username].Password == password;
+            if (isCorrect) { 
+                isLoggedIn = true;
+            }
+            return isCorrect;
+        } 
         public void Logout(string username) { /* Implement logout logic if needed */ }
     }
 }
