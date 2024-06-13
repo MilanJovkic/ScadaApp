@@ -15,18 +15,39 @@ namespace ScadaCore
         private Dictionary<string, User> users = new Dictionary<string, User>();
         private bool isLoggedIn = false;
 
-        public void AddTag(Tag tag) => tags[tag.Name] = tag;
-        public void RemoveTag(string tagName) => tags.Remove(tagName);
+        public void AddTag(Tag tag) {
+            if (isLoggedIn) {
+                tags[tag.Name] = tag;
+            }
+        }
+        public void RemoveTag(string tagName) {
+            if (isLoggedIn)
+            {
+                tags.Remove(tagName);
+            }
+        }
         public void SetTagValue(string tagName, double value)
         {
-            if (tags.ContainsKey(tagName))
-                tags[tagName].Value = value;
+            if (isLoggedIn)
+            {
+                if (tags.ContainsKey(tagName))
+                    tags[tagName].Value = value;
+            }
         }
-        public double GetTagValue(string tagName) => tags.ContainsKey(tagName) ? tags[tagName].Value : double.NaN;
+        public double GetTagValue(string tagName) {
+            if (isLoggedIn)
+            {
+                return tags.ContainsKey(tagName) ? tags[tagName].Value : double.NaN;
+            }
+            return double.NaN;
+        }
         public void TurnScanOnOff(string tagName, bool onOff)
         {
-            if (tags.ContainsKey(tagName))
-                tags[tagName].ScanOn = onOff;
+            if (isLoggedIn)
+            {
+                if (tags.ContainsKey(tagName))
+                    tags[tagName].ScanOn = onOff;
+            }
         }
 
         public void RegisterUser(String username, String password) => users[username] = new User(username, password);
@@ -37,6 +58,8 @@ namespace ScadaCore
             }
             return isCorrect;
         } 
-        public void Logout(string username) { /* Implement logout logic if needed */ }
+        public void Logout(string username) { 
+            isLoggedIn = false;
+        }
     }
 }
