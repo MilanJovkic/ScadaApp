@@ -28,7 +28,7 @@ namespace ScadaCore
                 tags[tagName].ScanOn = onOff;
         }
 
-        public void RegisterUser(User user) => users[user.Username] = user;
+        public void RegisterUser(String username, String password) => users[username] = new User(username, password);
         public bool Login(string username, string password) => users.ContainsKey(username) && users[username].Password == password;
         public void Logout(string username) { /* Implement logout logic if needed */ }
     }

@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScadaCore", "ScadaCore\ScadaCore.csproj", "{823601DD-0C54-4488-BEF8-212F21339B43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostScadaCore", "HostScadaCore\HostScadaCore.csproj", "{C53043F5-F056-4775-86A6-1B3E242BDD3F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{823601DD-0C54-4488-BEF8-212F21339B43} = {823601DD-0C54-4488-BEF8-212F21339B43}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

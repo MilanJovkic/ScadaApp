@@ -11,7 +11,7 @@ namespace ScadaCore
     public interface IUserProcessing
     {
         [OperationContract]
-        void RegisterUser(User user);
+        void RegisterUser(String username, String password);
 
         [OperationContract]
         bool Login(string username, string password);
