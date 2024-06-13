@@ -13,7 +13,7 @@ namespace RTUApp
         static void Main(string[] args)
         {
             string address = "RealTimeDriverAddress";
-            RealTimeDrive driver = new RealTimeDriver();
+            var driver = new RealTimeDriver.RealTimeDriver();
 
             while (true)
             {
