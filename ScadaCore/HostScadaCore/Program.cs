@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
-using HostScadaCore.ServiceReference1;
 using HostScadaCore.ServiceReference2;
+using ScadaCore;
 
 namespace HostScadaCore
 {
@@ -144,14 +144,97 @@ namespace HostScadaCore
 
         static void AddTag()
         {
-            Console.Write("Enter tag name: ");
-            string tagName = Console.ReadLine();
-            //tagProcessingClient.AddTag(new Tag { Name = tagName });
-            Console.WriteLine("Tag added.");
+            Console.WriteLine("Select Tag Type:");
+            Console.WriteLine("1. Digital Input (DI)");
+            Console.WriteLine("2. Digital Output (DO)");
+            Console.WriteLine("3. Analog Input (AI)");
+            Console.WriteLine("4. Analog Output (AO)");
+
+            string tagType = Console.ReadLine();
+            Tag newTag = null;
+            switch (tagType)
+            {
+                case "1":
+                    newTag = CreateDITag();
+                    break;
+                case "2":
+                    newTag = CreateDOTag();
+                    break;
+                case "3":
+                    newTag = CreateAITag();
+                    break;
+                case "4":
+                    newTag = CreateAOTag();
+                    break;
+                default:
+                    Console.WriteLine("Invalid option.");
+                    return;
+            }
+
+            SetTagFields(newTag);
+            tagProcessingClient.AddTag(newTag);
+            Console.WriteLine("Tag added.");   
+        }
+
+        private static AOTag CreateAOTag()
+        {
+            Console.Write("Enter initial value: ");
+            double initialValue = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Low Limit: ");
+            double lowLimit = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter High Limit: ");
+            double highLimit = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Units: ");
+            string units = Console.ReadLine();
+            return new AOTag { InitialValue = initialValue, LowLimit = lowLimit, HighLimit = highLimit, Units = units };
+        }
+
+        private static AITag CreateAITag()
+        {
+            Console.Write("Enter Driver Name: ");
+            string driver = Console.ReadLine();
+            int scanTime = 0;
+            Console.WriteLine("Enter Low Limit: ");
+            double lowLimit = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter High Limit: ");
+            double highLimit = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Units: ");
+            string units = Console.ReadLine();
+
+            // TODO: Implement Alarms
+            return new AITag { Driver = driver, ScanTime = scanTime, LowLimit = lowLimit, HighLimit = highLimit, Units = units , ScanOn = false};
+        }
+
+        private static DOTag CreateDOTag()
+        {
+            Console.Write("Enter initial value: ");
+            double initialValue = double.Parse(Console.ReadLine());
+            return new DOTag { InitialValue = initialValue };
+        }
+
+        private static DITag CreateDITag()
+        {
+            Console.Write("Enter Driver Name: ");
+            string driver = Console.ReadLine();
+            int scanTime = 0;
+            return new DITag { Driver = driver, ScanTime = scanTime, ScanOn = false };
+        }
+
+        private static void SetTagFields(Tag newTag)
+        {
+            Console.Write("Enter Tag Name (ID): ");
+            newTag.Name = Console.ReadLine();
+
+            Console.Write("Enter Description: ");
+            newTag.Description = Console.ReadLine();
+
+            Console.Write("Enter I/O Address: ");
+            newTag.IOAddress = Console.ReadLine();
         }
 
         static void RemoveTag()
         {
+            //Console.Write(tagProcessingClient.GetInputTagValue());
             Console.Write("Enter tag name: ");
             string tagName = Console.ReadLine();
             tagProcessingClient.RemoveTag(tagName);

@@ -1,16 +1,31 @@
-﻿namespace RealTimeDriver
+﻿using System.Collections.Generic;
+
+namespace RealTimeDriver
 {
-    public class RealTimeDriver
+    public static class RealTimeDriver
     {
-        public void WriteValue(string address, double value)
+        // Simulated data store
+        private static readonly Dictionary<string, double> _dataStore = new Dictionary<string, double>();
+
+        public static void WriteValue(string address, double value)
         {
-            // Implementacija upisivanja vrednosti na zadatu adresu
+            // Simulate writing a value to a given address
+            _dataStore[address] = value;
         }
 
-        public double ReadValue(string address)
+        public static double ReadValue(string address)
         {
-            // Implementacija čitanja vrednosti sa zadate adrese
-            return 0; // Placeholder
+            // Simulate reading a value from a given address
+            if (_dataStore.TryGetValue(address, out double value))   
+            {
+                return value;
+            }
+            else
+            {
+                // Consider how to handle the case where the address does not exist.
+                // For now, returning 0 or throwing an exception could be options.
+                return double.NaN; // Placeholder for non-existent address
+            }
         }
     }
 }

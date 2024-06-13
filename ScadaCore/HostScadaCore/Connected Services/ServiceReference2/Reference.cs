@@ -9,108 +9,21 @@
 //------------------------------------------------------------------------------
 
 namespace HostScadaCore.ServiceReference2 {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Tag", Namespace="http://schemas.datacontract.org/2004/07/ScadaCore")]
-    [System.SerializableAttribute()]
-    public partial class Tag : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string Descriptionk__BackingFieldField;
-        
-        private string IOAddressk__BackingFieldField;
-        
-        private string Namek__BackingFieldField;
-        
-        private bool ScanOnk__BackingFieldField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Description>k__BackingField", IsRequired=true)]
-        public string Descriptionk__BackingField {
-            get {
-                return this.Descriptionk__BackingFieldField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Descriptionk__BackingFieldField, value) != true)) {
-                    this.Descriptionk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Descriptionk__BackingField");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<IOAddress>k__BackingField", IsRequired=true)]
-        public string IOAddressk__BackingField {
-            get {
-                return this.IOAddressk__BackingFieldField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IOAddressk__BackingFieldField, value) != true)) {
-                    this.IOAddressk__BackingFieldField = value;
-                    this.RaisePropertyChanged("IOAddressk__BackingField");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Name>k__BackingField", IsRequired=true)]
-        public string Namek__BackingField {
-            get {
-                return this.Namek__BackingFieldField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Namek__BackingFieldField, value) != true)) {
-                    this.Namek__BackingFieldField = value;
-                    this.RaisePropertyChanged("Namek__BackingField");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<ScanOn>k__BackingField", IsRequired=true)]
-        public bool ScanOnk__BackingField {
-            get {
-                return this.ScanOnk__BackingFieldField;
-            }
-            set {
-                if ((this.ScanOnk__BackingFieldField.Equals(value) != true)) {
-                    this.ScanOnk__BackingFieldField = value;
-                    this.RaisePropertyChanged("ScanOnk__BackingField");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.ITagProcessing")]
     public interface ITagProcessing {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/AddTag", ReplyAction="http://tempuri.org/ITagProcessing/AddTagResponse")]
-        void AddTag(HostScadaCore.ServiceReference2.Tag tag);
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ScadaCore.DITag))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ScadaCore.AITag))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ScadaCore.DOTag))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ScadaCore.AOTag))]
+        void AddTag(ScadaCore.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/AddTag", ReplyAction="http://tempuri.org/ITagProcessing/AddTagResponse")]
-        System.Threading.Tasks.Task AddTagAsync(HostScadaCore.ServiceReference2.Tag tag);
+        System.Threading.Tasks.Task AddTagAsync(ScadaCore.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/RemoveTag", ReplyAction="http://tempuri.org/ITagProcessing/RemoveTagResponse")]
         void RemoveTag(string tagName);
@@ -135,6 +48,12 @@ namespace HostScadaCore.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/TurnScanOnOff", ReplyAction="http://tempuri.org/ITagProcessing/TurnScanOnOffResponse")]
         System.Threading.Tasks.Task TurnScanOnOffAsync(string tagName, bool onOff);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/GetInputTagValue", ReplyAction="http://tempuri.org/ITagProcessing/GetInputTagValueResponse")]
+        string GetInputTagValue();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/GetInputTagValue", ReplyAction="http://tempuri.org/ITagProcessing/GetInputTagValueResponse")]
+        System.Threading.Tasks.Task<string> GetInputTagValueAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -164,11 +83,11 @@ namespace HostScadaCore.ServiceReference2 {
                 base(binding, remoteAddress) {
         }
         
-        public void AddTag(HostScadaCore.ServiceReference2.Tag tag) {
+        public void AddTag(ScadaCore.Tag tag) {
             base.Channel.AddTag(tag);
         }
         
-        public System.Threading.Tasks.Task AddTagAsync(HostScadaCore.ServiceReference2.Tag tag) {
+        public System.Threading.Tasks.Task AddTagAsync(ScadaCore.Tag tag) {
             return base.Channel.AddTagAsync(tag);
         }
         
@@ -202,6 +121,14 @@ namespace HostScadaCore.ServiceReference2 {
         
         public System.Threading.Tasks.Task TurnScanOnOffAsync(string tagName, bool onOff) {
             return base.Channel.TurnScanOnOffAsync(tagName, onOff);
+        }
+        
+        public string GetInputTagValue() {
+            return base.Channel.GetInputTagValue();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetInputTagValueAsync() {
+            return base.Channel.GetInputTagValueAsync();
         }
     }
     

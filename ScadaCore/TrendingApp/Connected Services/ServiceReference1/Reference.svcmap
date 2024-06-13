@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:50306/SCADACoreService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SCADACoreService.wsdl" MetadataType="Wsdl" ID="edd1d80a-d223-4170-8dd3-a62db94e93f4" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?wsdl" />
     <MetadataFile FileName="SCADACoreService.xsd" MetadataType="Schema" ID="cfe68c07-48a1-48a1-9f02-95333ba724a3" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SCADACoreService.wsdl" MetadataType="Wsdl" ID="edd1d80a-d223-4170-8dd3-a62db94e93f4" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?wsdl" />
+    <MetadataFile FileName="SCADACoreService.disco" MetadataType="Disco" ID="d711cef7-b378-4aaa-b8d9-abef8a3fbc7b" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?disco" />
+    <MetadataFile FileName="SCADACoreService3.xsd" MetadataType="Schema" ID="af8f390b-4b7d-4084-8d9c-aa670dcdacdf" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?xsd=xsd3" />
     <MetadataFile FileName="SCADACoreService1.xsd" MetadataType="Schema" ID="bc4f08b6-c784-45e3-a24c-cb43cbdd8949" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?xsd=xsd2" />
     <MetadataFile FileName="SCADACoreService2.xsd" MetadataType="Schema" ID="4e2b7e0b-0ae7-4161-b165-5240b63a80a2" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?xsd=xsd0" />
-    <MetadataFile FileName="SCADACoreService.disco" MetadataType="Disco" ID="d711cef7-b378-4aaa-b8d9-abef8a3fbc7b" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -17,16 +17,23 @@ namespace TrendingApp.ServiceReference1 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Tag", Namespace="http://schemas.datacontract.org/2004/07/ScadaCore")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(TrendingApp.ServiceReference1.DITag))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(TrendingApp.ServiceReference1.AITag))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(TrendingApp.ServiceReference1.DOTag))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(TrendingApp.ServiceReference1.AOTag))]
     public partial class Tag : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private string Namek__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
         
-        private bool ScanOnk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IOAddressField;
         
-        private double Valuek__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -38,41 +45,41 @@ namespace TrendingApp.ServiceReference1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Name>k__BackingField", IsRequired=true)]
-        public string Namek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
             get {
-                return this.Namek__BackingFieldField;
+                return this.DescriptionField;
             }
             set {
-                if ((object.ReferenceEquals(this.Namek__BackingFieldField, value) != true)) {
-                    this.Namek__BackingFieldField = value;
-                    this.RaisePropertyChanged("Namek__BackingField");
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<ScanOn>k__BackingField", IsRequired=true)]
-        public bool ScanOnk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IOAddress {
             get {
-                return this.ScanOnk__BackingFieldField;
+                return this.IOAddressField;
             }
             set {
-                if ((this.ScanOnk__BackingFieldField.Equals(value) != true)) {
-                    this.ScanOnk__BackingFieldField = value;
-                    this.RaisePropertyChanged("ScanOnk__BackingField");
+                if ((object.ReferenceEquals(this.IOAddressField, value) != true)) {
+                    this.IOAddressField = value;
+                    this.RaisePropertyChanged("IOAddress");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Value>k__BackingField", IsRequired=true)]
-        public double Valuek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
             get {
-                return this.Valuek__BackingFieldField;
+                return this.NameField;
             }
             set {
-                if ((this.Valuek__BackingFieldField.Equals(value) != true)) {
-                    this.Valuek__BackingFieldField = value;
-                    this.RaisePropertyChanged("Valuek__BackingField");
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -83,6 +90,274 @@ namespace TrendingApp.ServiceReference1 {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DITag", Namespace="http://schemas.datacontract.org/2004/07/ScadaCore")]
+    [System.SerializableAttribute()]
+    public partial class DITag : TrendingApp.ServiceReference1.Tag {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DriverField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ScanOnField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ScanTimeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Driver {
+            get {
+                return this.DriverField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DriverField, value) != true)) {
+                    this.DriverField = value;
+                    this.RaisePropertyChanged("Driver");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ScanOn {
+            get {
+                return this.ScanOnField;
+            }
+            set {
+                if ((this.ScanOnField.Equals(value) != true)) {
+                    this.ScanOnField = value;
+                    this.RaisePropertyChanged("ScanOn");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ScanTime {
+            get {
+                return this.ScanTimeField;
+            }
+            set {
+                if ((this.ScanTimeField.Equals(value) != true)) {
+                    this.ScanTimeField = value;
+                    this.RaisePropertyChanged("ScanTime");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AITag", Namespace="http://schemas.datacontract.org/2004/07/ScadaCore")]
+    [System.SerializableAttribute()]
+    public partial class AITag : TrendingApp.ServiceReference1.Tag {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] AlarmsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DriverField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double HighLimitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double LowLimitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ScanOnField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ScanTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UnitsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] Alarms {
+            get {
+                return this.AlarmsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AlarmsField, value) != true)) {
+                    this.AlarmsField = value;
+                    this.RaisePropertyChanged("Alarms");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Driver {
+            get {
+                return this.DriverField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DriverField, value) != true)) {
+                    this.DriverField = value;
+                    this.RaisePropertyChanged("Driver");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double HighLimit {
+            get {
+                return this.HighLimitField;
+            }
+            set {
+                if ((this.HighLimitField.Equals(value) != true)) {
+                    this.HighLimitField = value;
+                    this.RaisePropertyChanged("HighLimit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double LowLimit {
+            get {
+                return this.LowLimitField;
+            }
+            set {
+                if ((this.LowLimitField.Equals(value) != true)) {
+                    this.LowLimitField = value;
+                    this.RaisePropertyChanged("LowLimit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ScanOn {
+            get {
+                return this.ScanOnField;
+            }
+            set {
+                if ((this.ScanOnField.Equals(value) != true)) {
+                    this.ScanOnField = value;
+                    this.RaisePropertyChanged("ScanOn");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ScanTime {
+            get {
+                return this.ScanTimeField;
+            }
+            set {
+                if ((this.ScanTimeField.Equals(value) != true)) {
+                    this.ScanTimeField = value;
+                    this.RaisePropertyChanged("ScanTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Units {
+            get {
+                return this.UnitsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UnitsField, value) != true)) {
+                    this.UnitsField = value;
+                    this.RaisePropertyChanged("Units");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DOTag", Namespace="http://schemas.datacontract.org/2004/07/ScadaCore")]
+    [System.SerializableAttribute()]
+    public partial class DOTag : TrendingApp.ServiceReference1.Tag {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double InitialValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double InitialValue {
+            get {
+                return this.InitialValueField;
+            }
+            set {
+                if ((this.InitialValueField.Equals(value) != true)) {
+                    this.InitialValueField = value;
+                    this.RaisePropertyChanged("InitialValue");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AOTag", Namespace="http://schemas.datacontract.org/2004/07/ScadaCore")]
+    [System.SerializableAttribute()]
+    public partial class AOTag : TrendingApp.ServiceReference1.Tag {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double HighLimitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double InitialValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double LowLimitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UnitsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double HighLimit {
+            get {
+                return this.HighLimitField;
+            }
+            set {
+                if ((this.HighLimitField.Equals(value) != true)) {
+                    this.HighLimitField = value;
+                    this.RaisePropertyChanged("HighLimit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double InitialValue {
+            get {
+                return this.InitialValueField;
+            }
+            set {
+                if ((this.InitialValueField.Equals(value) != true)) {
+                    this.InitialValueField = value;
+                    this.RaisePropertyChanged("InitialValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double LowLimit {
+            get {
+                return this.LowLimitField;
+            }
+            set {
+                if ((this.LowLimitField.Equals(value) != true)) {
+                    this.LowLimitField = value;
+                    this.RaisePropertyChanged("LowLimit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Units {
+            get {
+                return this.UnitsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UnitsField, value) != true)) {
+                    this.UnitsField = value;
+                    this.RaisePropertyChanged("Units");
+                }
             }
         }
     }
@@ -104,10 +379,10 @@ namespace TrendingApp.ServiceReference1 {
         System.Threading.Tasks.Task RemoveTagAsync(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/SetTagValue", ReplyAction="http://tempuri.org/ITagProcessing/SetTagValueResponse")]
-        void SetTagValue(string tagName, double value);
+        bool SetTagValue(string tagName, double value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/SetTagValue", ReplyAction="http://tempuri.org/ITagProcessing/SetTagValueResponse")]
-        System.Threading.Tasks.Task SetTagValueAsync(string tagName, double value);
+        System.Threading.Tasks.Task<bool> SetTagValueAsync(string tagName, double value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/GetTagValue", ReplyAction="http://tempuri.org/ITagProcessing/GetTagValueResponse")]
         double GetTagValue(string tagName);
@@ -120,6 +395,12 @@ namespace TrendingApp.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/TurnScanOnOff", ReplyAction="http://tempuri.org/ITagProcessing/TurnScanOnOffResponse")]
         System.Threading.Tasks.Task TurnScanOnOffAsync(string tagName, bool onOff);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/GetInputTagValue", ReplyAction="http://tempuri.org/ITagProcessing/GetInputTagValueResponse")]
+        string GetInputTagValue();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/GetInputTagValue", ReplyAction="http://tempuri.org/ITagProcessing/GetInputTagValueResponse")]
+        System.Threading.Tasks.Task<string> GetInputTagValueAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -165,11 +446,11 @@ namespace TrendingApp.ServiceReference1 {
             return base.Channel.RemoveTagAsync(tagName);
         }
         
-        public void SetTagValue(string tagName, double value) {
-            base.Channel.SetTagValue(tagName, value);
+        public bool SetTagValue(string tagName, double value) {
+            return base.Channel.SetTagValue(tagName, value);
         }
         
-        public System.Threading.Tasks.Task SetTagValueAsync(string tagName, double value) {
+        public System.Threading.Tasks.Task<bool> SetTagValueAsync(string tagName, double value) {
             return base.Channel.SetTagValueAsync(tagName, value);
         }
         
@@ -187,6 +468,14 @@ namespace TrendingApp.ServiceReference1 {
         
         public System.Threading.Tasks.Task TurnScanOnOffAsync(string tagName, bool onOff) {
             return base.Channel.TurnScanOnOffAsync(tagName, onOff);
+        }
+        
+        public string GetInputTagValue() {
+            return base.Channel.GetInputTagValue();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetInputTagValueAsync() {
+            return base.Channel.GetInputTagValueAsync();
         }
     }
     

@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:50306/SCADACoreService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:50306/SCADACoreService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:50306/SCADACoreService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ScadaCore" />
+      <xsd:import schemaLocation="http://localhost:50306/SCADACoreService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ITagProcessing_AddTag_InputMessage">
@@ -36,6 +37,12 @@
   </wsdl:message>
   <wsdl:message name="ITagProcessing_TurnScanOnOff_OutputMessage">
     <wsdl:part name="parameters" element="tns:TurnScanOnOffResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITagProcessing_GetInputTagValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInputTagValue" />
+  </wsdl:message>
+  <wsdl:message name="ITagProcessing_GetInputTagValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInputTagValueResponse" />
   </wsdl:message>
   <wsdl:message name="IUserProcessing_RegisterUser_InputMessage">
     <wsdl:part name="parameters" element="tns:RegisterUser" />
@@ -75,6 +82,10 @@
     <wsdl:operation name="TurnScanOnOff">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagProcessing/TurnScanOnOff" message="tns:ITagProcessing_TurnScanOnOff_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITagProcessing/TurnScanOnOffResponse" message="tns:ITagProcessing_TurnScanOnOff_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInputTagValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagProcessing/GetInputTagValue" message="tns:ITagProcessing_GetInputTagValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagProcessing/GetInputTagValueResponse" message="tns:ITagProcessing_GetInputTagValue_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUserProcessing">
@@ -131,6 +142,15 @@
     </wsdl:operation>
     <wsdl:operation name="TurnScanOnOff">
       <soap:operation soapAction="http://tempuri.org/ITagProcessing/TurnScanOnOff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInputTagValue">
+      <soap:operation soapAction="http://tempuri.org/ITagProcessing/GetInputTagValue" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

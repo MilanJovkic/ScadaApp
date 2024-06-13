@@ -12,14 +12,14 @@ namespace RTUApp
     {
         static void Main(string[] args)
         {
-            string address = "RealTimeDriverAddress";
-            var driver = new RealTimeDriver.RealTimeDriver();
-
+            Console.WriteLine("Please input address of device: ");
+            string address = Console.ReadLine();
             while (true)
             {
                 double value = new Random().NextDouble() * 10;
-                driver.WriteValue(address, value);
-                Thread.Sleep(1000); // Send data every second
+                RealTimeDriver.RealTimeDriver.WriteValue(address, value);
+                Thread.Sleep(1000);
+                Console.WriteLine("kurcinela");
             }
         }
     }

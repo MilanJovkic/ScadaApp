@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace ScadaCore
 {
-    [Serializable]
+    [DataContract]
     public class DOTag : Tag
     {
+        [DataMember]
         public double InitialValue { get; set; }
+        public DOTag() { }
     }
 }

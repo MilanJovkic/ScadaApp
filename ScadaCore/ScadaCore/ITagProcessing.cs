@@ -24,5 +24,9 @@ namespace ScadaCore
 
         [OperationContract]
         void TurnScanOnOff(string tagName, bool onOff);
+
+        [OperationContract]
+        string GetInputTagValue();
+        
     }
 }
