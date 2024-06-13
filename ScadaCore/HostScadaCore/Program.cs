@@ -60,8 +60,14 @@ namespace HostScadaCore
             string username = Console.ReadLine();
             Console.Write("Enter password: ");
             string password = Console.ReadLine();
-            userProcessingClient.RegisterUser(username, password);
-            Console.WriteLine("User registered.");
+            bool isRegistered = userProcessingClient.RegisterUser(username, password);
+            if (isRegistered)
+            {
+                Console.WriteLine("User registered.");
+            }
+            else {
+                Console.WriteLine("Username already exist");
+            }
         }
 
         static void Login()

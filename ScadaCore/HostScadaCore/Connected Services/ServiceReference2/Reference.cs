@@ -195,10 +195,10 @@ namespace HostScadaCore.ServiceReference2 {
     public interface IUserProcessing {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserProcessing/RegisterUser", ReplyAction="http://tempuri.org/IUserProcessing/RegisterUserResponse")]
-        void RegisterUser(string username, string password);
+        bool RegisterUser(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserProcessing/RegisterUser", ReplyAction="http://tempuri.org/IUserProcessing/RegisterUserResponse")]
-        System.Threading.Tasks.Task RegisterUserAsync(string username, string password);
+        System.Threading.Tasks.Task<bool> RegisterUserAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserProcessing/Login", ReplyAction="http://tempuri.org/IUserProcessing/LoginResponse")]
         bool Login(string username, string password);
@@ -240,11 +240,11 @@ namespace HostScadaCore.ServiceReference2 {
                 base(binding, remoteAddress) {
         }
         
-        public void RegisterUser(string username, string password) {
-            base.Channel.RegisterUser(username, password);
+        public bool RegisterUser(string username, string password) {
+            return base.Channel.RegisterUser(username, password);
         }
         
-        public System.Threading.Tasks.Task RegisterUserAsync(string username, string password) {
+        public System.Threading.Tasks.Task<bool> RegisterUserAsync(string username, string password) {
             return base.Channel.RegisterUserAsync(username, password);
         }
         

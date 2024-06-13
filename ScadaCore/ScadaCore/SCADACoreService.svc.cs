@@ -50,7 +50,13 @@ namespace ScadaCore
             }
         }
 
-        public void RegisterUser(String username, String password) => users[username] = new User(username, password);
+        public bool RegisterUser(String username, String password) {
+            if (users[username] == null) {
+                users[username] = new User(username, password);
+                return true;
+            }
+            return false;
+        } 
         public bool Login(string username, string password) {
             bool isCorrect = users.ContainsKey(username) && users[username].Password == password;
             if (isCorrect) { 
