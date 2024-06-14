@@ -55,17 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\ServiceReference1\SCADACoreService.wsdl" />
-    <None Include="Connected Services\ServiceReference1\SCADACoreService.xsd">
+    <None Include="Connected Services\ServiceReference1\TrendingService.wsdl" />
+    <None Include="Connected Services\ServiceReference1\TrendingService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiceReference1\SCADACoreService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceReference1\SCADACoreService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceReference1\SCADACoreService3.xsd">
+    <None Include="Connected Services\ServiceReference1\TrendingService1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -76,7 +70,7 @@
     <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference1\SCADACoreService.disco" />
+    <None Include="Connected Services\ServiceReference1\TrendingService.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />

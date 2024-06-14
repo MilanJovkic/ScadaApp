@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="1cfd6570-4c68-43a7-8f9f-6cebd189490e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="4a96dac5-fff4-4906-a891-842730f2fbb4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,15 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:50306/SCADACoreService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:50306/TrendingService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SCADACoreService.xsd" MetadataType="Schema" ID="cfe68c07-48a1-48a1-9f02-95333ba724a3" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?xsd=xsd1" />
-    <MetadataFile FileName="SCADACoreService.wsdl" MetadataType="Wsdl" ID="edd1d80a-d223-4170-8dd3-a62db94e93f4" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?wsdl" />
-    <MetadataFile FileName="SCADACoreService.disco" MetadataType="Disco" ID="d711cef7-b378-4aaa-b8d9-abef8a3fbc7b" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?disco" />
-    <MetadataFile FileName="SCADACoreService3.xsd" MetadataType="Schema" ID="af8f390b-4b7d-4084-8d9c-aa670dcdacdf" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?xsd=xsd3" />
-    <MetadataFile FileName="SCADACoreService1.xsd" MetadataType="Schema" ID="bc4f08b6-c784-45e3-a24c-cb43cbdd8949" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?xsd=xsd2" />
-    <MetadataFile FileName="SCADACoreService2.xsd" MetadataType="Schema" ID="4e2b7e0b-0ae7-4161-b165-5240b63a80a2" SourceId="1" SourceUrl="http://localhost:50306/SCADACoreService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TrendingService.wsdl" MetadataType="Wsdl" ID="e28f6d8d-ca37-428c-bff9-8a166a2cab84" SourceId="1" SourceUrl="http://localhost:50306/TrendingService.svc?wsdl" />
+    <MetadataFile FileName="TrendingService.xsd" MetadataType="Schema" ID="f767cf13-563c-4cdc-9ad8-12c51daa52ad" SourceId="1" SourceUrl="http://localhost:50306/TrendingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TrendingService.disco" MetadataType="Disco" ID="2fb1d9bd-36aa-4675-86f1-b9a7fa875a17" SourceId="1" SourceUrl="http://localhost:50306/TrendingService.svc?disco" />
+    <MetadataFile FileName="TrendingService1.xsd" MetadataType="Schema" ID="636e81d3-8b51-417f-a89f-98155b774537" SourceId="1" SourceUrl="http://localhost:50306/TrendingService.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -67,11 +67,5 @@ namespace RealTimeDriver
             var json = File.ReadAllText(FilePath2);
             return JsonConvert.DeserializeObject<Dictionary<string, double>>(json) ?? new Dictionary<string, double>();
         }
-
-        private static void SaveDataStore2(Dictionary<string, double> dataStore)
-        {
-            var json = JsonConvert.SerializeObject(dataStore);
-            File.WriteAllText(FilePath2, json);
-        }
     }
 }
