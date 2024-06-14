@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -11,6 +12,8 @@ namespace ScadaCore
     // NOTE: In order to launch WCF Test Client for testing this service, please select TrendingService.svc or TrendingService.svc.cs at the Solution Explorer and start debugging.
     public class TrendingService : ITrendingProcessing
     {
+        private static readonly string SolutionDirectory1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..");
+        private static readonly string FilePathValues = Path.Combine(SolutionDirectory1, "inputTagsValues.txt");
         public string GetInputTagValue()
         {
             SCADACoreService.tags = XmlSerializationHelper.DeserializeTagsFromXml(SCADACoreService.FilePath1);
@@ -53,6 +56,8 @@ namespace ScadaCore
                     result += $"{item.Key}\t{item.Value.ToString()}\n";
                 }
             }
+
+            File.AppendAllText(FilePathValues, result);
 
             return result;
         }

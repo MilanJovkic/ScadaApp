@@ -18,13 +18,48 @@ namespace ScadaCore
         private UsersContext db = new UsersContext();
         private static readonly string SolutionDirectory1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..");
         public static readonly string FilePath1 = Path.Combine(SolutionDirectory1, "tags.xml");
+        private static readonly string FilePathValues = Path.Combine(SolutionDirectory1, "outputTagsValues.txt");
 
         public void AddTag(Tag tag) {
             if (isLoggedIn) {
                 tags[tag.Name] = tag;
                 XmlSerializationHelper.SerializeTagsToXml(tags, FilePath1);
+                if (tag is DOTag)
+                {
+                    DOTag dOTag = tag as DOTag;
+                    GenerateTable(dOTag);
+                }
+                else if (tag is AOTag)
+                {
+                    AOTag aOTag = tag as AOTag;
+                    GenerateTable2(aOTag);
+                }
             }
         }
+
+        private void GenerateTable(DOTag tag)
+        {
+            string result = "Name\tValue\n";
+            result += "------------------------\n";
+
+            result += $"{tag.Name}\t{tag.InitialValue.ToString()}\n";
+               
+
+            File.AppendAllText(FilePathValues, result);
+        }
+
+
+        private void GenerateTable2(AOTag tag)
+        {
+            string result = "Name\tValue\n";
+            result += "------------------------\n";
+
+            result += $"{tag.Name}\t{tag.InitialValue.ToString()}\n";
+
+
+            File.AppendAllText(FilePathValues, result);
+        }
+
         public void RemoveTag(string tagName) {
             if (isLoggedIn)
             {
@@ -44,6 +79,7 @@ namespace ScadaCore
                         dOTag.InitialValue = value;
                         tags[tagName] = dOTag;
                         XmlSerializationHelper.SerializeTagsToXml(tags, FilePath1);
+                        GenerateTable(dOTag);
                         return true;
                     }
                     else if (tags[tagName] is AOTag)
@@ -54,6 +90,7 @@ namespace ScadaCore
                             aOTag.InitialValue = value;
                             tags[tagName] = aOTag;
                             XmlSerializationHelper.SerializeTagsToXml(tags, FilePath1);
+                            GenerateTable2(aOTag);
                             return true;
                         }
                         else

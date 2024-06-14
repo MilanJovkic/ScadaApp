@@ -48,12 +48,6 @@ namespace HostScadaCore.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/TurnScanOnOff", ReplyAction="http://tempuri.org/ITagProcessing/TurnScanOnOffResponse")]
         System.Threading.Tasks.Task TurnScanOnOffAsync(string tagName, bool onOff);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/GetInputTagValue", ReplyAction="http://tempuri.org/ITagProcessing/GetInputTagValueResponse")]
-        string GetInputTagValue();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/GetInputTagValue", ReplyAction="http://tempuri.org/ITagProcessing/GetInputTagValueResponse")]
-        System.Threading.Tasks.Task<string> GetInputTagValueAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -121,14 +115,6 @@ namespace HostScadaCore.ServiceReference2 {
         
         public System.Threading.Tasks.Task TurnScanOnOffAsync(string tagName, bool onOff) {
             return base.Channel.TurnScanOnOffAsync(tagName, onOff);
-        }
-        
-        public string GetInputTagValue() {
-            return base.Channel.GetInputTagValue();
-        }
-        
-        public System.Threading.Tasks.Task<string> GetInputTagValueAsync() {
-            return base.Channel.GetInputTagValueAsync();
         }
     }
     
