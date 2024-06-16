@@ -16,14 +16,14 @@ namespace ScadaCore
         private Dictionary<string, User> users = new Dictionary<string, User>();
         private bool isLoggedIn = false;
         private UsersContext db = new UsersContext();
-        private static readonly string SolutionDirectory1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..");
-        public static readonly string FilePath1 = Path.Combine(SolutionDirectory1, "tags.xml");
-        private static readonly string FilePathValues = Path.Combine(SolutionDirectory1, "outputTagsValues.txt");
 
-        public void AddTag(Tag tag) {
+
+
+        public bool AddTag(Tag tag) {
             if (isLoggedIn) {
+                if (tags.ContainsKey(tag.Name)) { return false;  }
                 tags[tag.Name] = tag;
-                XmlSerializationHelper.SerializeTagsToXml(tags, FilePath1);
+                XmlSerializationHelper.SerializeTagsToXml(tags, DBManager.FilePathTags);
                 if (tag is DOTag)
                 {
                     DOTag dOTag = tag as DOTag;
@@ -34,43 +34,51 @@ namespace ScadaCore
                     AOTag aOTag = tag as AOTag;
                     GenerateTable2(aOTag);
                 }
+                return true;
             }
+            return false;
         }
+
 
         private void GenerateTable(DOTag tag)
         {
-            string result = "Name\tValue\n";
+            string result = "\n======================\nName\tValue\n";
             result += "------------------------\n";
 
             result += $"{tag.Name}\t{tag.InitialValue.ToString()}\n";
-               
+            result += "\n======================";
 
-            File.AppendAllText(FilePathValues, result);
+            File.AppendAllText(DBManager.FilePathOutputTagValues, result);
         }
 
 
         private void GenerateTable2(AOTag tag)
         {
-            string result = "Name\tValue\n";
+            string result = "\n======================\nName\tValue\n";
             result += "------------------------\n";
 
             result += $"{tag.Name}\t{tag.InitialValue.ToString()}\n";
+            result += "\n======================";
 
-
-            File.AppendAllText(FilePathValues, result);
+            File.AppendAllText(DBManager.FilePathOutputTagValues, result);
         }
 
-        public void RemoveTag(string tagName) {
+        public bool RemoveTag(string tagName) {
             if (isLoggedIn)
             {
+                if (tags.ContainsKey(tagName)) { return false; }
                 tags.Remove(tagName);
-                XmlSerializationHelper.SerializeTagsToXml(tags, FilePath1);
+                XmlSerializationHelper.SerializeTagsToXml(tags, DBManager.FilePathTags);
+                DBManager.RemoveTagFromDB(tagName);
+                return true;
             }
+            return false;
         }
         public bool SetTagValue(string tagName, double value)
         {
             if (isLoggedIn)
             {
+                tags = XmlSerializationHelper.DeserializeTagsFromXml(DBManager.FilePathTags);
                 if (tags.ContainsKey(tagName))
                 {
                     if (tags[tagName] is DOTag)
@@ -78,7 +86,8 @@ namespace ScadaCore
                         DOTag dOTag = tags[tagName] as DOTag;
                         dOTag.InitialValue = value;
                         tags[tagName] = dOTag;
-                        XmlSerializationHelper.SerializeTagsToXml(tags, FilePath1);
+                        XmlSerializationHelper.SerializeTagsToXml(tags, DBManager.FilePathTags);
+                        DBManager.SaveTagValueToDB(dOTag, value);
                         GenerateTable(dOTag);
                         return true;
                     }
@@ -89,7 +98,8 @@ namespace ScadaCore
                         {
                             aOTag.InitialValue = value;
                             tags[tagName] = aOTag;
-                            XmlSerializationHelper.SerializeTagsToXml(tags, FilePath1);
+                            XmlSerializationHelper.SerializeTagsToXml(tags, DBManager.FilePathTags);
+                            DBManager.SaveTagValueToDB(aOTag, value);
                             GenerateTable2(aOTag);
                             return true;
                         }
@@ -126,7 +136,7 @@ namespace ScadaCore
             }
             return double.NaN;
         }
-        public void TurnScanOnOff(string tagName, bool onOff)
+        public bool TurnScanOnOff(string tagName, bool onOff)
         {
             if (isLoggedIn)
             {
@@ -144,9 +154,31 @@ namespace ScadaCore
                         dITag.ScanOn = onOff;
                         tags[tagName] = dITag;
                     }
-                    XmlSerializationHelper.SerializeTagsToXml(tags, FilePath1);
+                    XmlSerializationHelper.SerializeTagsToXml(tags, DBManager.FilePathTags);
+                    return true;
                 }
+                return false;
             }
+            return false;
+        }
+
+        public bool AddAlarm(Alarm alarm)
+        {
+            if (isLoggedIn)
+            {
+                if (tags.ContainsKey(alarm.TagName)) {
+                    Tag tag = tags[alarm.TagName];
+                    if (tag is AITag)
+                    {
+                        AITag aiTag = tag as AITag;
+                        aiTag.Alarms.Add(alarm);
+                        tags[alarm.TagName] = aiTag;
+                        XmlSerializationHelper.SerializeTagsToXml(tags, DBManager.FilePathTags);
+                        return true;
+                    }               
+                }              
+            }
+            return false;
         }
 
         public bool RegisterUser(string username, string password) 
@@ -165,13 +197,17 @@ namespace ScadaCore
             bool isCorrect = db.Users.Any(u => u.Username == username && u.Password == password);
             if (isCorrect) { 
                 isLoggedIn = true;
-                XmlSerializationHelper.DeserializeTagsFromXml(FilePath1).ToList().ForEach(x => tags.Add(x.Key, x.Value));
+                tags.Clear();
+                XmlSerializationHelper.DeserializeTagsFromXml(DBManager.FilePathTags).ToList().ForEach(x => tags.Add(x.Key, x.Value));
             }
             return isCorrect;
         } 
         public void Logout(string username) { 
             isLoggedIn = false;
         }
+
+
+
         //public string GetInputTagValue() {
         //    var dict = new Dictionary<string, object>();
         //    foreach (var tag in tags)

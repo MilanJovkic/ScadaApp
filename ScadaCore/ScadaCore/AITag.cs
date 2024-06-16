@@ -12,7 +12,7 @@ namespace ScadaCore
         [DataMember]
         public int ScanTime { get; set; }
         [DataMember]
-        public List<string> Alarms { get; set; }
+        public List<Alarm> Alarms { get; set; }
         [DataMember]
         public double LowLimit { get; set; }
         [DataMember]

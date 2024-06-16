@@ -20,16 +20,16 @@ namespace HostScadaCore.ServiceReference2 {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ScadaCore.AITag))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ScadaCore.DOTag))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ScadaCore.AOTag))]
-        void AddTag(ScadaCore.Tag tag);
+        bool AddTag(ScadaCore.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/AddTag", ReplyAction="http://tempuri.org/ITagProcessing/AddTagResponse")]
-        System.Threading.Tasks.Task AddTagAsync(ScadaCore.Tag tag);
+        System.Threading.Tasks.Task<bool> AddTagAsync(ScadaCore.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/RemoveTag", ReplyAction="http://tempuri.org/ITagProcessing/RemoveTagResponse")]
-        void RemoveTag(string tagName);
+        bool RemoveTag(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/RemoveTag", ReplyAction="http://tempuri.org/ITagProcessing/RemoveTagResponse")]
-        System.Threading.Tasks.Task RemoveTagAsync(string tagName);
+        System.Threading.Tasks.Task<bool> RemoveTagAsync(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/SetTagValue", ReplyAction="http://tempuri.org/ITagProcessing/SetTagValueResponse")]
         bool SetTagValue(string tagName, double value);
@@ -44,10 +44,16 @@ namespace HostScadaCore.ServiceReference2 {
         System.Threading.Tasks.Task<double> GetTagValueAsync(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/TurnScanOnOff", ReplyAction="http://tempuri.org/ITagProcessing/TurnScanOnOffResponse")]
-        void TurnScanOnOff(string tagName, bool onOff);
+        bool TurnScanOnOff(string tagName, bool onOff);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/TurnScanOnOff", ReplyAction="http://tempuri.org/ITagProcessing/TurnScanOnOffResponse")]
-        System.Threading.Tasks.Task TurnScanOnOffAsync(string tagName, bool onOff);
+        System.Threading.Tasks.Task<bool> TurnScanOnOffAsync(string tagName, bool onOff);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/AddAlarm", ReplyAction="http://tempuri.org/ITagProcessing/AddAlarmResponse")]
+        bool AddAlarm(ScadaCore.Alarm alarm);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/AddAlarm", ReplyAction="http://tempuri.org/ITagProcessing/AddAlarmResponse")]
+        System.Threading.Tasks.Task<bool> AddAlarmAsync(ScadaCore.Alarm alarm);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -77,19 +83,19 @@ namespace HostScadaCore.ServiceReference2 {
                 base(binding, remoteAddress) {
         }
         
-        public void AddTag(ScadaCore.Tag tag) {
-            base.Channel.AddTag(tag);
+        public bool AddTag(ScadaCore.Tag tag) {
+            return base.Channel.AddTag(tag);
         }
         
-        public System.Threading.Tasks.Task AddTagAsync(ScadaCore.Tag tag) {
+        public System.Threading.Tasks.Task<bool> AddTagAsync(ScadaCore.Tag tag) {
             return base.Channel.AddTagAsync(tag);
         }
         
-        public void RemoveTag(string tagName) {
-            base.Channel.RemoveTag(tagName);
+        public bool RemoveTag(string tagName) {
+            return base.Channel.RemoveTag(tagName);
         }
         
-        public System.Threading.Tasks.Task RemoveTagAsync(string tagName) {
+        public System.Threading.Tasks.Task<bool> RemoveTagAsync(string tagName) {
             return base.Channel.RemoveTagAsync(tagName);
         }
         
@@ -109,12 +115,20 @@ namespace HostScadaCore.ServiceReference2 {
             return base.Channel.GetTagValueAsync(tagName);
         }
         
-        public void TurnScanOnOff(string tagName, bool onOff) {
-            base.Channel.TurnScanOnOff(tagName, onOff);
+        public bool TurnScanOnOff(string tagName, bool onOff) {
+            return base.Channel.TurnScanOnOff(tagName, onOff);
         }
         
-        public System.Threading.Tasks.Task TurnScanOnOffAsync(string tagName, bool onOff) {
+        public System.Threading.Tasks.Task<bool> TurnScanOnOffAsync(string tagName, bool onOff) {
             return base.Channel.TurnScanOnOffAsync(tagName, onOff);
+        }
+        
+        public bool AddAlarm(ScadaCore.Alarm alarm) {
+            return base.Channel.AddAlarm(alarm);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddAlarmAsync(ScadaCore.Alarm alarm) {
+            return base.Channel.AddAlarmAsync(alarm);
         }
     }
     

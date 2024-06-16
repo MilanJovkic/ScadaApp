@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using HostScadaCore.ServiceReference2;
 using ScadaCore;
@@ -7,6 +8,7 @@ namespace HostScadaCore
 {
     class Program
     {
+        private static readonly string ERROR_MSG = "Invalid option. Please try again.";
         private static readonly ServiceReference2.UserProcessingClient userProcessingClient = new ServiceReference2.UserProcessingClient();
         private static readonly ServiceReference2.TagProcessingClient tagProcessingClient = new ServiceReference2.TagProcessingClient();
         private static bool isLoggedIn = false;
@@ -134,6 +136,9 @@ namespace HostScadaCore
                     Logout();
                     break;
                 case "7":
+                    AddAlarm();
+                    break;
+                case "8":
                     Console.WriteLine("Exiting...");
                     return;
                 default:
@@ -141,6 +146,8 @@ namespace HostScadaCore
                     break;
             }
         }
+
+        
 
         static void AddTag()
         {
@@ -172,8 +179,41 @@ namespace HostScadaCore
             }
 
             SetTagFields(newTag);
-            tagProcessingClient.AddTag(newTag);
-            Console.WriteLine("Tag added.");   
+            bool success = tagProcessingClient.AddTag(newTag);
+            if (success)
+            {
+                Console.WriteLine("Tag added.");
+                if (newTag is AOTag)
+                {
+                    AOTag aOTag = newTag as AOTag;
+                    success = tagProcessingClient.SetTagValue(aOTag.Name, aOTag.InitialValue);
+                    if (success)
+                    {
+                        Console.WriteLine("Tag value set.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Tag value set FAILED.");
+                    }
+                }
+                else if (newTag is DOTag) 
+                {
+                    DOTag dOTag = newTag as DOTag;
+                    success = tagProcessingClient.SetTagValue(dOTag.Name, dOTag.InitialValue);
+                    if (success)
+                    {
+                        Console.WriteLine("Tag value set.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Tag value set FAILED.");
+                    }
+                }              
+            }
+            else
+            {
+                Console.WriteLine("Failed to add tag");
+            }
         }
 
         private static AOTag CreateAOTag()
@@ -199,12 +239,81 @@ namespace HostScadaCore
             Console.WriteLine("Enter High Limit: ");
             double highLimit = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter Units: ");
+            List<Alarm> alarms = new List<Alarm>();
             string units = Console.ReadLine();
+            while (true)
+            {
+                
+                Console.WriteLine("Do you want to add alarm? (y/n)");
+                String key = Console.ReadLine();
+                if (key == "y" || key == "Y")
+                {
+                    Alarm alarm = new Alarm()
+                    {
+                        Type = EnterAlarmType(),
+                        Priority = EnterAlarmPriority(),
+                        Threshold = EnterAlarmThreshold(),
+                    };
+                    alarms.Add(alarm);
+                    continue;
+                }
+                
+                if (key == "n" || key == "N")
+                {
+                    break;
+                }
+                Console.WriteLine(ERROR_MSG);
+                continue;
+            }
 
-            // TODO: Implement Alarms
-            return new AITag { Driver = driver, ScanTime = scanTime, LowLimit = lowLimit, HighLimit = highLimit, Units = units , ScanOn = false};
+            return new AITag { Driver = driver, ScanTime = scanTime, Alarms = alarms,  LowLimit = lowLimit, HighLimit = highLimit, Units = units , ScanOn = false};
         }
 
+        private static AlarmType EnterAlarmType()
+        {
+            while (true)
+            {
+                Console.Write("Type (low/high) >> ");
+                string input = Console.ReadLine().Trim().ToLower();
+                if (input == "low")
+                {
+                    return AlarmType.low;
+                }
+                if (input == "high")
+                {
+                    return AlarmType.high;
+                }
+                Console.WriteLine(ERROR_MSG);
+            }
+        }
+
+        private static int EnterAlarmPriority()
+        {
+            while (true)
+            {
+                Console.Write("Priority (1/2/3) >> ");
+                string input = Console.ReadLine().Trim();
+                if (input == "1" || input == "2" || input == "3")
+                {
+                    return int.Parse(input);
+                }
+                Console.WriteLine(ERROR_MSG);
+            }
+        }
+
+        private static double EnterAlarmThreshold()
+        {
+            while (true)
+            {
+                Console.Write("Threshold >> ");
+                string input = Console.ReadLine();
+                if (double.TryParse(input, out double threshold))
+                {
+                    return threshold;
+                }
+                Console.WriteLine(ERROR_MSG);
+            }
+        }
         private static DOTag CreateDOTag()
         {
             Console.Write("Enter initial value: ");
@@ -230,6 +339,15 @@ namespace HostScadaCore
 
             Console.Write("Enter I/O Address: ");
             newTag.IOAddress = Console.ReadLine();
+
+            if (newTag is AITag)
+            {
+                AITag aiTag = newTag as AITag;
+                foreach (Alarm alarm in aiTag.Alarms)
+                {
+                    alarm.TagName = newTag.Name;
+                }
+            }
         }
 
         static void RemoveTag()
@@ -237,8 +355,15 @@ namespace HostScadaCore
             //Console.Write(tagProcessingClient.GetInputTagValue());
             Console.Write("Enter tag name: ");
             string tagName = Console.ReadLine();
-            tagProcessingClient.RemoveTag(tagName);
-            Console.WriteLine("Tag removed.");
+            bool success = tagProcessingClient.RemoveTag(tagName);
+            if (success)
+            {
+                Console.WriteLine("Tag with name " + tagName + " removed.");
+            }
+            else
+            {
+                Console.WriteLine("Failed to remove tag with name " + tagName);
+            }
         }
 
         static void SetTagValue()
@@ -247,8 +372,8 @@ namespace HostScadaCore
             string tagName = Console.ReadLine();
             Console.Write("Enter tag value: ");
             double tagValue = double.Parse(Console.ReadLine());
-            bool succestag = tagProcessingClient.SetTagValue(tagName, tagValue);
-            if (succestag)
+            bool success = tagProcessingClient.SetTagValue(tagName, tagValue);
+            if (success)
             {
                 Console.WriteLine("Tag value set.");
             }
@@ -272,8 +397,29 @@ namespace HostScadaCore
             string tagName = Console.ReadLine();
             Console.Write("Turn scan on (true/false): ");
             bool scanOn = bool.Parse(Console.ReadLine());
-            tagProcessingClient.TurnScanOnOff(tagName, scanOn);
-            Console.WriteLine("Scan status changed.");
+            bool success = tagProcessingClient.TurnScanOnOff(tagName, scanOn);
+            if (success)
+            {
+                Console.WriteLine("Scan status changed.");
+            }
+            else
+            {
+                Console.WriteLine("Failed to change scan status");
+            }
+        }
+
+        static void AddAlarm()
+        {
+            Console.Write("Enter tag name: ");
+            string tagName = Console.ReadLine();
+            Alarm alarm = new Alarm()
+            {
+                TagName = tagName,
+                Type = EnterAlarmType(),
+                Priority = EnterAlarmPriority(),
+                Threshold = EnterAlarmThreshold(),
+            };
+
         }
     }
 }

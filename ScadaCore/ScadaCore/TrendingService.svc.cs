@@ -12,35 +12,55 @@ namespace ScadaCore
     // NOTE: In order to launch WCF Test Client for testing this service, please select TrendingService.svc or TrendingService.svc.cs at the Solution Explorer and start debugging.
     public class TrendingService : ITrendingProcessing
     {
-        private static readonly string SolutionDirectory1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..");
-        private static readonly string FilePathValues = Path.Combine(SolutionDirectory1, "inputTagsValues.txt");
+        
+
         public string GetInputTagValue()
         {
-            SCADACoreService.tags = XmlSerializationHelper.DeserializeTagsFromXml(SCADACoreService.FilePath1);
-            var dict = new Dictionary<string, object>();
+            SCADACoreService.tags = XmlSerializationHelper.DeserializeTagsFromXml(DBManager.FilePathTags);
+            var dict = DBManager.GetLatestTagValues();
             foreach (var tag in SCADACoreService.tags)
             {
                 if (tag.Value is AITag aiTag)
                 {
                     if (aiTag.ScanOn)
                     {
-                        dict[tag.Key] = RealTimeDriver.RealTimeDriver.ReadValue(aiTag.IOAddress);
+
+                        double value = RealTimeDriver.RealTimeDriver.ReadValue(aiTag.IOAddress);
+                        if (!dict.ContainsKey(tag.Key) || value != dict[tag.Key].Value)
+                        {
+                            TagValue tagValue = DBManager.SaveTagValueToDB(tag.Value, value);
+                            dict[tag.Key] = tagValue;
+                            foreach (Alarm alarm in aiTag.Alarms)
+                            {
+                                if ((alarm.Type == AlarmType.high && value > alarm.Threshold) || (alarm.Type == AlarmType.low && value < alarm.Threshold))
+                                {
+                                    DBManager.AddActivatedAlarm(new TriggeredAlarm { Id = DBManager.activatedAlarms.Count, Alarm = alarm, TriggeredAt = DateTime.Now }, value);
+                                }
+                            }
+                        }                                            
                     }
                 }
                 else if (tag.Value is DITag diTag)
                 {
                     if (diTag.ScanOn)
                     {
-                        dict[tag.Key] = RealTimeDriver.RealTimeDriver.ReadValue(diTag.IOAddress);
+                        double value = RealTimeDriver.RealTimeDriver.ReadValue(diTag.IOAddress);
+                        if (!dict.ContainsKey(tag.Key) || value != dict[tag.Key].Value)
+                        {
+                            TagValue tagValue = DBManager.SaveTagValueToDB(tag.Value, value);
+                            dict[tag.Key] = tagValue;
+                            DBManager.SaveTagValueToDB(tag.Value, value);
+                        }
+                           
                     }
                 }
             }
             return GenerateTable(dict);
         }
-        private string GenerateTable(Dictionary<string, object> data)
+        private string GenerateTable(Dictionary<string, TagValue> data)
         {
             // Initialize the resulting string
-            string result = "Name\tValue\n";
+            string result = "\nName\tValue\n";
             result += "------------------------\n";
 
             // Iterate through all key-value pairs in the dictionary
@@ -53,13 +73,14 @@ namespace ScadaCore
                 }
                 else
                 {
-                    result += $"{item.Key}\t{item.Value.ToString()}\n";
+                    result += $"{item.Key}\t{item.Value.Value.ToString()}\n";
                 }
             }
-
-            File.AppendAllText(FilePathValues, result);
+           File.WriteAllText(DBManager.FilePathInputTagValues, result);
 
             return result;
         }
+
+        
     }
 }

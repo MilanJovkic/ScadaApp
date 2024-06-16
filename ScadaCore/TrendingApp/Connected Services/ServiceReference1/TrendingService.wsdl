@@ -32,7 +32,7 @@
   </wsdl:binding>
   <wsdl:service name="TrendingService">
     <wsdl:port name="BasicHttpBinding_ITrendingProcessing" binding="tns:BasicHttpBinding_ITrendingProcessing">
-      <soap:address location="http://localhost:50306/TrendingService.svc" />
+      <soap:address location="http://localhost:50306/TrendingService.svc/F" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -1,0 +1,9 @@
+
+============================
+Name	Value
+------------------------
+baki	Tag name: baki, Tag type: DITag, Value: 8.35291106642825, Arrived at: 6/16/2024 1:15:16 PM
+a	Tag name: a, Tag type: DITag, Value: 9.15632680019193, Arrived at: 6/16/2024 1:15:16 PM
+AITag	Tag name: AITag, Tag type: AITag, Value: 29.7497789979678, Arrived at: 6/16/2024 1:18:42 PM
+
+============================

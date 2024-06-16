@@ -5,7 +5,6 @@
       <xsd:import schemaLocation="http://localhost:50306/SCADACoreService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:50306/SCADACoreService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:50306/SCADACoreService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ScadaCore" />
-      <xsd:import schemaLocation="http://localhost:50306/SCADACoreService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ITagProcessing_AddTag_InputMessage">
@@ -37,6 +36,12 @@
   </wsdl:message>
   <wsdl:message name="ITagProcessing_TurnScanOnOff_OutputMessage">
     <wsdl:part name="parameters" element="tns:TurnScanOnOffResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITagProcessing_AddAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ITagProcessing_AddAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAlarmResponse" />
   </wsdl:message>
   <wsdl:message name="IUserProcessing_RegisterUser_InputMessage">
     <wsdl:part name="parameters" element="tns:RegisterUser" />
@@ -76,6 +81,10 @@
     <wsdl:operation name="TurnScanOnOff">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagProcessing/TurnScanOnOff" message="tns:ITagProcessing_TurnScanOnOff_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITagProcessing/TurnScanOnOffResponse" message="tns:ITagProcessing_TurnScanOnOff_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagProcessing/AddAlarm" message="tns:ITagProcessing_AddAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagProcessing/AddAlarmResponse" message="tns:ITagProcessing_AddAlarm_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUserProcessing">
@@ -139,6 +148,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddAlarm">
+      <soap:operation soapAction="http://tempuri.org/ITagProcessing/AddAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IUserProcessing" type="tns:IUserProcessing">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -172,10 +190,10 @@
   </wsdl:binding>
   <wsdl:service name="SCADACoreService">
     <wsdl:port name="BasicHttpBinding_ITagProcessing" binding="tns:BasicHttpBinding_ITagProcessing">
-      <soap:address location="http://localhost:50306/SCADACoreService.svc" />
+      <soap:address location="http://localhost:50306/SCADACoreService.svc/T" />
     </wsdl:port>
     <wsdl:port name="BasicHttpBinding_IUserProcessing" binding="tns:BasicHttpBinding_IUserProcessing">
-      <soap:address location="http://localhost:50306/SCADACoreService.svc" />
+      <soap:address location="http://localhost:50306/SCADACoreService.svc/U" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

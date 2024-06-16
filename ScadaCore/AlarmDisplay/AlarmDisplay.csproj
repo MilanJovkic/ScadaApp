@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C53043F5-F056-4775-86A6-1B3E242BDD3F}</ProjectGuid>
+    <ProjectGuid>{E251239A-CEDD-4686-8F35-E4029D1991CD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>HostScadaCore</RootNamespace>
-    <AssemblyName>HostScadaCore</AssemblyName>
+    <RootNamespace>AlarmDisplay</RootNamespace>
+    <AssemblyName>AlarmDisplay</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\ServiceReference2\Reference.cs">
+    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -55,14 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\ServiceReference2\SCADACoreService.wsdl" />
-    <None Include="Connected Services\ServiceReference2\SCADACoreService.xsd">
+    <None Include="Connected Services\ServiceReference1\AlarmDisplayService.wsdl" />
+    <None Include="Connected Services\ServiceReference1\AlarmDisplayService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiceReference2\SCADACoreService1.xsd">
+    <None Include="Connected Services\ServiceReference1\AlarmDisplayService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiceReference2\SCADACoreService2.xsd">
+    <None Include="Connected Services\ServiceReference1\AlarmDisplayService2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -70,28 +70,22 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ServiceReference2\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference2\SCADACoreService.disco" />
+    <None Include="Connected Services\ServiceReference1\AlarmDisplayService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference2\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference2\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference2\Reference.svcmap">
+    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ScadaCore\ScadaCore.csproj">
-      <Project>{823601DD-0C54-4488-BEF8-212F21339B43}</Project>
-      <Name>ScadaCore</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

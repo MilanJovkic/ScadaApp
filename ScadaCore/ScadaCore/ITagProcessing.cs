@@ -11,10 +11,10 @@ namespace ScadaCore
     public interface ITagProcessing
     {
         [OperationContract]
-        void AddTag(Tag tag);
+        bool AddTag(Tag tag);
 
         [OperationContract]
-        void RemoveTag(string tagName);
+        bool RemoveTag(string tagName);
 
         [OperationContract]
         bool SetTagValue(string tagName, double value);
@@ -23,7 +23,9 @@ namespace ScadaCore
         double GetTagValue(string tagName);
 
         [OperationContract]
-        void TurnScanOnOff(string tagName, bool onOff);
-        
+        bool TurnScanOnOff(string tagName, bool onOff);
+
+        [OperationContract]
+        bool AddAlarm(Alarm alarm);
     }
 }

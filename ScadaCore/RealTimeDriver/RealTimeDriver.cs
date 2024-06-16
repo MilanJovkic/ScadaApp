@@ -16,7 +16,7 @@ namespace RealTimeDriver
 
         public static void WriteValue(string address, double value)
         {
-            lock (FileLock)
+            lock (FilePath1)
             {
                 var dataStore = LoadDataStore1();
                 dataStore[address] = value;
@@ -26,7 +26,7 @@ namespace RealTimeDriver
 
         public static double ReadValue(string address)
         {
-            lock (FileLock)
+            lock (FilePath2)
             {
                 var dataStore = LoadDataStore2();
                 if (dataStore.TryGetValue(address, out double value))

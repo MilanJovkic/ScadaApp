@@ -17,7 +17,7 @@ namespace TrendingApp
             {
                 Console.Clear();
                 Console.WriteLine(tagProcessingClient.GetInputTagValue());
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
             }
         }
     }

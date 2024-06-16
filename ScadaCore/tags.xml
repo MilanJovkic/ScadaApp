@@ -31,5 +31,53 @@
       <Name>h</Name>
       <InitialValue>9</InitialValue>
     </Tag>
+    <Tag i:type="DITag">
+      <Description>Super</Description>
+      <IOAddress>1000</IOAddress>
+      <Name>DITag</Name>
+      <Driver>DIDriver</Driver>
+      <ScanOn>false</ScanOn>
+      <ScanTime>0</ScanTime>
+    </Tag>
+    <Tag i:type="DOTag">
+      <Description>Super</Description>
+      <IOAddress>2000</IOAddress>
+      <Name>DOTag</Name>
+      <InitialValue>20</InitialValue>
+    </Tag>
+    <Tag i:type="AITag">
+      <Description>Super</Description>
+      <IOAddress>3000</IOAddress>
+      <Name>AITag</Name>
+      <Alarms>
+        <Alarm>
+          <Priority>2</Priority>
+          <TagName>AITag</TagName>
+          <Threshold>5</Threshold>
+          <Type>low</Type>
+        </Alarm>
+        <Alarm>
+          <Priority>3</Priority>
+          <TagName>AITag</TagName>
+          <Threshold>10</Threshold>
+          <Type>high</Type>
+        </Alarm>
+      </Alarms>
+      <Driver>AIDriver</Driver>
+      <HighLimit>50</HighLimit>
+      <LowLimit>1</LowLimit>
+      <ScanOn>true</ScanOn>
+      <ScanTime>0</ScanTime>
+      <Units>AIUnit</Units>
+    </Tag>
+    <Tag i:type="AOTag">
+      <Description>super</Description>
+      <IOAddress>4000</IOAddress>
+      <Name>AOTag</Name>
+      <HighLimit>100</HighLimit>
+      <InitialValue>150</InitialValue>
+      <LowLimit>10</LowLimit>
+      <Units>AOUnit</Units>
+    </Tag>
   </TagsList>
 </TagCollection>

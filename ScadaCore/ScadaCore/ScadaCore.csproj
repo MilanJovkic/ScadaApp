@@ -71,15 +71,23 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AlarmDisplayService.svc" />
     <Content Include="SCADACoreService.svc" />
     <Content Include="TrendingService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AITag.cs" />
+    <Compile Include="Alarm.cs" />
+    <Compile Include="AlarmDisplayService.svc.cs">
+      <DependentUpon>AlarmDisplayService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AlarmsContext.cs" />
     <Compile Include="AOTag.cs" />
+    <Compile Include="DBManager.cs" />
     <Compile Include="DITag.cs" />
     <Compile Include="DOTag.cs" />
+    <Compile Include="IAlarmDisplayService.cs" />
     <Compile Include="ITagProcessing.cs" />
     <Compile Include="ITrendingService.cs" />
     <Compile Include="IUserProcessing.cs" />
@@ -89,6 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="TagCollection.cs" />
+    <Compile Include="TagContext.cs" />
     <Compile Include="TrendingService.svc.cs">
       <DependentUpon>TrendingService.svc</DependentUpon>
     </Compile>

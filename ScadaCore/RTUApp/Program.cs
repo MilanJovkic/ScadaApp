@@ -16,10 +16,9 @@ namespace RTUApp
             string address = Console.ReadLine();
             while (true)
             {
-                double value = new Random().NextDouble() * 10;
+                double value = new Random().NextDouble() * 100;
                 RealTimeDriver.RealTimeDriver.WriteValue(address, value);
-                Thread.Sleep(1000);
-                Console.WriteLine("kurcinela");
+                Thread.Sleep(5000);
             }
         }
     }
