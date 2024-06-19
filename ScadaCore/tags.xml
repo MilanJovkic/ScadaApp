@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TagCollection xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ScadaCore">
+  <TagsList>
+    <Tag i:type="DITag">
+      <Description>simulation di</Description>
+      <IOAddress>S</IOAddress>
+      <Name>SIM DI</Name>
+      <Driver>Simulation Driver</Driver>
+      <ScanOn>true</ScanOn>
+      <ScanTime>0</ScanTime>
+    </Tag>
+    <Tag i:type="AITag">
+      <Description>asd</Description>
+      <IOAddress>3000</IOAddress>
+      <Name>AI tag</Name>
+      <Alarms>
+        <Alarm>
+          <Priority>1</Priority>
+          <TagName>AI tag</TagName>
+          <Threshold>50</Threshold>
+          <Type>low</Type>
+        </Alarm>
+        <Alarm>
+          <Priority>2</Priority>
+          <TagName>AI tag</TagName>
+          <Threshold>70</Threshold>
+          <Type>high</Type>
+        </Alarm>
+      </Alarms>
+      <Driver>Real Time Driver</Driver>
+      <HighLimit>100</HighLimit>
+      <LowLimit>10</LowLimit>
+      <ScanOn>true</ScanOn>
+      <ScanTime>0</ScanTime>
+      <Units>cm</Units>
+    </Tag>
+    <Tag i:type="DOTag">
+      <Description>asad</Description>
+      <IOAddress>2000</IOAddress>
+      <Name>DO tag</Name>
+      <InitialValue>30</InitialValue>
+    </Tag>
+    <Tag i:type="AOTag">
+      <Description>asd</Description>
+      <IOAddress>4000</IOAddress>
+      <Name>AO tag</Name>
+      <HighLimit>100</HighLimit>
+      <InitialValue>40</InitialValue>
+      <LowLimit>10</LowLimit>
+      <Units>kg</Units>
+    </Tag>
+  </TagsList>
+</TagCollection>
