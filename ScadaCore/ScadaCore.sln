@@ -24,6 +24,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmDisplay", "AlarmDispla
 		{823601DD-0C54-4488-BEF8-212F21339B43} = {823601DD-0C54-4488-BEF8-212F21339B43}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportManager", "ReportManager\ReportManager.csproj", "{6FAB7A43-71B6-4F38-83FB-CB38A5AA5C8E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{823601DD-0C54-4488-BEF8-212F21339B43} = {823601DD-0C54-4488-BEF8-212F21339B43}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +59,10 @@ Global
 		{E251239A-CEDD-4686-8F35-E4029D1991CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E251239A-CEDD-4686-8F35-E4029D1991CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E251239A-CEDD-4686-8F35-E4029D1991CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAB7A43-71B6-4F38-83FB-CB38A5AA5C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAB7A43-71B6-4F38-83FB-CB38A5AA5C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAB7A43-71B6-4F38-83FB-CB38A5AA5C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAB7A43-71B6-4F38-83FB-CB38A5AA5C8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

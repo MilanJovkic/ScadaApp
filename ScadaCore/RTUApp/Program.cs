@@ -18,7 +18,7 @@ namespace RTUApp
             {
                 double value = new Random().NextDouble() * 100;
                 RealTimeDriver.RealTimeDriver.WriteValue(address, value);
-                Thread.Sleep(5000);
+                Thread.Sleep(10000);
             }
         }
     }

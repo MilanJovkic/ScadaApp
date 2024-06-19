@@ -82,6 +82,7 @@ namespace ScadaCore
                     // Iterate over all tag values
                     foreach (var tagValue in allTagValues)
                     {
+
                         // If the dictionary already contains the TagName
                         if (latestTagValues.ContainsKey(tagValue.TagName))
                         {
@@ -96,9 +97,51 @@ namespace ScadaCore
                             // If the TagName is not in the dictionary, add it
                             latestTagValues[tagValue.TagName] = tagValue;
                         }
+                        
+                        
                     }
 
                     return latestTagValues;
+                }
+            }
+        }
+
+        public static List<TagValue> GetLatestTagValuesOfType(string type)
+        {
+            lock (tagValuesDBLock)
+            {
+                using (var db = new TagContext())
+                {
+                    // Get all tag values from the database
+                    var allTagValues = db.TagValues.ToList();
+
+                    // Create a dictionary to store the latest TagValue for each TagName
+                    var latestTagValues = new Dictionary<string, TagValue>();
+
+                    // Iterate over all tag values
+                    foreach (var tagValue in allTagValues)
+                    {
+                        if (tagValue.TagType == type)
+                        {
+                            // If the dictionary already contains the TagName
+                            if (latestTagValues.ContainsKey(tagValue.TagName))
+                            {
+                                // Compare the ArrivedAt time and update if the current tagValue is newer
+                                if (tagValue.ArrivedAt > latestTagValues[tagValue.TagName].ArrivedAt)
+                                {
+                                    latestTagValues[tagValue.TagName] = tagValue;
+                                }
+                            }
+                            else
+                            {
+                                // If the TagName is not in the dictionary, add it
+                                latestTagValues[tagValue.TagName] = tagValue;
+                            }
+                        }
+
+                    }
+
+                    return latestTagValues.Values.ToList();
                 }
             }
         }
@@ -159,6 +202,7 @@ namespace ScadaCore
             }
             //TODO: proveri sto ima 3 alarma na konzoli
 
+            
             OnAlarmTriggered?.Invoke(activatedAlarm, value);
             lock (activatedAlarmsLock)
             {

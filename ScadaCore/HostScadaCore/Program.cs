@@ -110,7 +110,8 @@ namespace HostScadaCore
             Console.WriteLine("4. Get Tag Value");
             Console.WriteLine("5. Turn Scan On/Off");
             Console.WriteLine("6. Logout");
-            Console.WriteLine("7. Exit");
+            Console.WriteLine("7. Add alarm");
+            Console.WriteLine("8. Exit");
 
             Console.Write("Select an option: ");
             string option = Console.ReadLine();
@@ -231,8 +232,7 @@ namespace HostScadaCore
 
         private static AITag CreateAITag()
         {
-            Console.Write("Enter Driver Name: ");
-            string driver = Console.ReadLine();
+            String driver = EnterDriver();
             int scanTime = 0;
             Console.WriteLine("Enter Low Limit: ");
             double lowLimit = double.Parse(Console.ReadLine());
@@ -269,6 +269,17 @@ namespace HostScadaCore
             return new AITag { Driver = driver, ScanTime = scanTime, Alarms = alarms,  LowLimit = lowLimit, HighLimit = highLimit, Units = units , ScanOn = false};
         }
 
+        private static string EnterDriver()
+        {
+            while (true)
+            {
+                Console.WriteLine("\nEnter Driver Name\n 1. Simulation Driver\n 2. Real Time Driver\n");
+                string driverNum = Console.ReadLine();
+                if (driverNum == "1") return "Simulation Driver";
+                else if (driverNum == "2") return "Real Time Driver";
+                Console.WriteLine(ERROR_MSG);
+            }
+        }
         private static AlarmType EnterAlarmType()
         {
             while (true)
@@ -323,8 +334,7 @@ namespace HostScadaCore
 
         private static DITag CreateDITag()
         {
-            Console.Write("Enter Driver Name: ");
-            string driver = Console.ReadLine();
+            string driver = EnterDriver();
             int scanTime = 0;
             return new DITag { Driver = driver, ScanTime = scanTime, ScanOn = false };
         }
@@ -337,9 +347,6 @@ namespace HostScadaCore
             Console.Write("Enter Description: ");
             newTag.Description = Console.ReadLine();
 
-            Console.Write("Enter I/O Address: ");
-            newTag.IOAddress = Console.ReadLine();
-
             if (newTag is AITag)
             {
                 AITag aiTag = newTag as AITag;
@@ -347,7 +354,64 @@ namespace HostScadaCore
                 {
                     alarm.TagName = newTag.Name;
                 }
+
+                if (aiTag.Driver == "Simulation Driver")
+                {
+                    while (true)
+                    {
+                        Console.Write("Enter I/O Address: (R/S/C): ");
+                        String ioAddress = Console.ReadLine();
+                        if (ioAddress != "R" && ioAddress != "S" && ioAddress != "C")
+                        {
+                            Console.WriteLine(ERROR_MSG);
+                            continue;
+                        }
+                        newTag.IOAddress = ioAddress;
+                        break;
+                    }
+
+                }
+                else
+                {
+                    Console.Write("Enter I/O Address: ");
+                    newTag.IOAddress = Console.ReadLine();
+                }
             }
+            else if (newTag is DITag)
+            {
+                DITag diTag = newTag as DITag;
+               
+                if (diTag.Driver == "Simulation Driver")
+                {
+                    while (true)
+                    {
+                        Console.Write("Enter I/O Address: (R/S/C): ");
+                        String ioAddress = Console.ReadLine();
+                        if (ioAddress != "R" && ioAddress != "S" && ioAddress != "C")
+                        {
+                            Console.WriteLine(ERROR_MSG);
+                            continue;
+                        }
+                        newTag.IOAddress = ioAddress;
+                        break;
+                    }
+
+                }
+                else 
+                {
+                    Console.Write("Enter I/O Address: ");
+                    newTag.IOAddress = Console.ReadLine();
+                }
+            }
+            else
+            {
+                Console.Write("Enter I/O Address: ");
+                newTag.IOAddress = Console.ReadLine();
+            }
+
+
+
+
         }
 
         static void RemoveTag()
@@ -420,6 +484,9 @@ namespace HostScadaCore
                 Threshold = EnterAlarmThreshold(),
             };
 
+            tagProcessingClient.AddAlarm(alarm);
+            Console.WriteLine("Added alarm\nPress any key to continue");
+            Console.ReadKey();
         }
     }
 }

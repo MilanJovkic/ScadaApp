@@ -1,6 +1,29 @@
-Name	Value
+Name	Type	Value
 ------------------------
-DOTag	20
-Name	Value
+
+Name	Type	Value
 ------------------------
-AOTag	150
+
+Name	Type	Value
+------------------------
+DO tag	DOTag	30
+
+Name	Type	Value
+------------------------
+DO tag	DOTag	30
+
+Name	Type	Value
+------------------------
+DO tag	DOTag	30
+AO tag	AOTag	25
+
+Name	Type	Value
+------------------------
+DO tag	DOTag	30
+AO tag	AOTag	25
+
+Name	Type	Value
+------------------------
+DO tag	DOTag	30
+AO tag	AOTag	40
+

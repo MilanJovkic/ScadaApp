@@ -2,82 +2,52 @@
 <TagCollection xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ScadaCore">
   <TagsList>
     <Tag i:type="DITag">
-      <Description>kurac</Description>
-      <IOAddress>kurac</IOAddress>
-      <Name>baki</Name>
-      <Driver>baki</Driver>
+      <Description>simulation di</Description>
+      <IOAddress>S</IOAddress>
+      <Name>SIM DI</Name>
+      <Driver>Simulation Driver</Driver>
       <ScanOn>true</ScanOn>
       <ScanTime>0</ScanTime>
-    </Tag>
-    <Tag i:type="DITag">
-      <Description>a</Description>
-      <IOAddress>a</IOAddress>
-      <Name>a</Name>
-      <Driver>a</Driver>
-      <ScanOn>true</ScanOn>
-      <ScanTime>0</ScanTime>
-    </Tag>
-    <Tag i:type="DITag">
-      <Description>b</Description>
-      <IOAddress>b</IOAddress>
-      <Name>b</Name>
-      <Driver>b</Driver>
-      <ScanOn>false</ScanOn>
-      <ScanTime>0</ScanTime>
-    </Tag>
-    <Tag i:type="DOTag">
-      <Description>h</Description>
-      <IOAddress>h</IOAddress>
-      <Name>h</Name>
-      <InitialValue>9</InitialValue>
-    </Tag>
-    <Tag i:type="DITag">
-      <Description>Super</Description>
-      <IOAddress>1000</IOAddress>
-      <Name>DITag</Name>
-      <Driver>DIDriver</Driver>
-      <ScanOn>false</ScanOn>
-      <ScanTime>0</ScanTime>
-    </Tag>
-    <Tag i:type="DOTag">
-      <Description>Super</Description>
-      <IOAddress>2000</IOAddress>
-      <Name>DOTag</Name>
-      <InitialValue>20</InitialValue>
     </Tag>
     <Tag i:type="AITag">
-      <Description>Super</Description>
+      <Description>asd</Description>
       <IOAddress>3000</IOAddress>
-      <Name>AITag</Name>
+      <Name>AI tag</Name>
       <Alarms>
         <Alarm>
-          <Priority>2</Priority>
-          <TagName>AITag</TagName>
-          <Threshold>5</Threshold>
+          <Priority>1</Priority>
+          <TagName>AI tag</TagName>
+          <Threshold>50</Threshold>
           <Type>low</Type>
         </Alarm>
         <Alarm>
-          <Priority>3</Priority>
-          <TagName>AITag</TagName>
-          <Threshold>10</Threshold>
+          <Priority>2</Priority>
+          <TagName>AI tag</TagName>
+          <Threshold>70</Threshold>
           <Type>high</Type>
         </Alarm>
       </Alarms>
-      <Driver>AIDriver</Driver>
-      <HighLimit>50</HighLimit>
-      <LowLimit>1</LowLimit>
+      <Driver>Real Time Driver</Driver>
+      <HighLimit>100</HighLimit>
+      <LowLimit>10</LowLimit>
       <ScanOn>true</ScanOn>
       <ScanTime>0</ScanTime>
-      <Units>AIUnit</Units>
+      <Units>cm</Units>
+    </Tag>
+    <Tag i:type="DOTag">
+      <Description>asad</Description>
+      <IOAddress>2000</IOAddress>
+      <Name>DO tag</Name>
+      <InitialValue>30</InitialValue>
     </Tag>
     <Tag i:type="AOTag">
-      <Description>super</Description>
+      <Description>asd</Description>
       <IOAddress>4000</IOAddress>
-      <Name>AOTag</Name>
+      <Name>AO tag</Name>
       <HighLimit>100</HighLimit>
-      <InitialValue>150</InitialValue>
+      <InitialValue>40</InitialValue>
       <LowLimit>10</LowLimit>
-      <Units>AOUnit</Units>
+      <Units>kg</Units>
     </Tag>
   </TagsList>
 </TagCollection>

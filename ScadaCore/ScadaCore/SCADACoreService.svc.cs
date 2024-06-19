@@ -27,39 +27,35 @@ namespace ScadaCore
                 if (tag is DOTag)
                 {
                     DOTag dOTag = tag as DOTag;
-                    GenerateTable(dOTag);
+                    DBManager.SaveTagValueToDB(dOTag, dOTag.InitialValue);
+                    
                 }
                 else if (tag is AOTag)
                 {
                     AOTag aOTag = tag as AOTag;
-                    GenerateTable2(aOTag);
+                    DBManager.SaveTagValueToDB(aOTag, aOTag.InitialValue);
                 }
+                GenerateDOTable();
                 return true;
             }
             return false;
         }
 
 
-        private void GenerateTable(DOTag tag)
+
+        private void GenerateDOTable()
         {
-            string result = "\n======================\nName\tValue\n";
+            string result = "Name\tType\tValue\n";
             result += "------------------------\n";
-
-            result += $"{tag.Name}\t{tag.InitialValue.ToString()}\n";
-            result += "\n======================";
-
-            File.AppendAllText(DBManager.FilePathOutputTagValues, result);
-        }
-
-
-        private void GenerateTable2(AOTag tag)
-        {
-            string result = "\n======================\nName\tValue\n";
-            result += "------------------------\n";
-
-            result += $"{tag.Name}\t{tag.InitialValue.ToString()}\n";
-            result += "\n======================";
-
+            List<TagValue> tagValues = DBManager.GetLatestTagValues().Values.ToList();
+            foreach (TagValue tagValue in tagValues)
+            {
+                if (tagValue.TagType == "AOTag" || tagValue.TagType == "DOTag")
+                {
+                    result += $"{tagValue.TagName}\t{tagValue.TagType}\t{tagValue.Value.ToString()}\n";
+                }
+            }
+            result += "\n";
             File.AppendAllText(DBManager.FilePathOutputTagValues, result);
         }
 
@@ -88,7 +84,7 @@ namespace ScadaCore
                         tags[tagName] = dOTag;
                         XmlSerializationHelper.SerializeTagsToXml(tags, DBManager.FilePathTags);
                         DBManager.SaveTagValueToDB(dOTag, value);
-                        GenerateTable(dOTag);
+                        GenerateDOTable();
                         return true;
                     }
                     else if (tags[tagName] is AOTag)
@@ -100,7 +96,7 @@ namespace ScadaCore
                             tags[tagName] = aOTag;
                             XmlSerializationHelper.SerializeTagsToXml(tags, DBManager.FilePathTags);
                             DBManager.SaveTagValueToDB(aOTag, value);
-                            GenerateTable2(aOTag);
+                            GenerateDOTable();
                             return true;
                         }
                         else
@@ -119,19 +115,10 @@ namespace ScadaCore
         public double GetTagValue(string tagName) {
             if (isLoggedIn)
             {
-                if (tags.ContainsKey(tagName))
+                Dictionary<string,TagValue> dict = DBManager.GetLatestTagValues();
+                if (dict.ContainsKey(tagName))
                 {
-                    if (tags[tagName] is DOTag)
-                    {
-                        DOTag dOTag = tags[tagName] as DOTag;
-                        return dOTag.InitialValue;
-                    }
-
-                    if (tags[tagName] is AOTag)
-                    {
-                        AOTag aOTag = tags[tagName] as AOTag;
-                        return aOTag.InitialValue;
-                    }
+                    return dict[tagName].Value;
                 }
             }
             return double.NaN;

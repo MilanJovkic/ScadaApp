@@ -1,33 +1,35 @@
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:27:48 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:27:52 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:27:55 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:00 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:04 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:08 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:11 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:14 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:17 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:21 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:24 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:27 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:30 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:34 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:38 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:41 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:44 PM
-Alarm tag: AITag, Type: low, Priority: 2, Threshold: 5, Activated at: 6/16/2024 12:28:47 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:17:21 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:17:26 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:17:31 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:17:36 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:17:41 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:17:46 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:18:02 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:18:07 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:18:12 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:18:17 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:18:22 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:18:27 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:18:32 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:18:37 PM
-Alarm tag: AITag, Type: high, Priority: 3, Threshold: 10, Activated at: 6/16/2024 1:18:42 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 9:58:51 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 9:59:01 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 9:59:11 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 9:59:31 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 9:59:41 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:00:01 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:00:12 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:00:22 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:00:32 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:00:42 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:01:02 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:01:12 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:01:32 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:01:52 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:02:02 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:02:22 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:02:32 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:02:53 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:03:13 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:03:23 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:03:33 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:04:03 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:04:13 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:04:33 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:04:43 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:05:03 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:05:14 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:05:34 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:05:44 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:06:04 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:06:34 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:06:44 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:06:54 PM
+Alarm tag: AI tag, Type: low, Priority: 1, Threshold: 50, Activated at: 6/19/2024 10:07:04 PM
+Alarm tag: AI tag, Type: high, Priority: 2, Threshold: 70, Activated at: 6/19/2024 10:07:14 PM
